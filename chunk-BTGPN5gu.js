@@ -1,0 +1,1 @@
+function a(o,r,d){return o.active&&o.items.length>0&&o.items.every(t=>t.catalogKind===`product`?r.some(e=>e.id===t.catalogId&&e.active):d.some(e=>e.id===t.catalogId&&e.active))}export{a as t};
