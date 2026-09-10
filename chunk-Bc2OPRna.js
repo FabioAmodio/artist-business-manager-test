@@ -1,0 +1,1 @@
+import{Ot as _}from"./chunk-q5PaS-BG.js";var e=new _(`APP_ENVIRONMENT`);var n=new _(`STORAGE_PROVIDER`);var t=new _(`SYNC_PROVIDER`);export{n,t as r,e as t};
