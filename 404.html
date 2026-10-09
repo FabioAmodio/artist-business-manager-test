@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      // GitHub Pages SPA routing redirect
+      // This script handles direct navigation to any route in the single-page app
+      // by storing the original path and redirecting to index.html with the path in query params
+      
+      (function() {
+        const l = window.location;
+        const firstPathSegment = l.pathname.split('/').filter(Boolean)[0];
+        const basePath = firstPathSegment ? `/${firstPathSegment}/` : '/';
+        
+        // Get the request path relative to base path
+        // e.g., /artist-business-manager/dashboard -> dashboard
+        const pathname = l.pathname;
+        const requestedPath = pathname.startsWith(basePath) 
+          ? pathname.slice(basePath.length) 
+          : pathname;
+        
+        // If path is empty or just a slash, don't redirect
+        if (!requestedPath || requestedPath === '/' || requestedPath === '') {
+          return;
+        }
+        
+        // Reconstruct the redirect URL
+        // Store the original path in query param so the app can restore it
+        const redirectUrl = 
+          l.protocol +
+          '//' +
+          l.hostname +
+          (l.port ? ':' + l.port : '') +
+          basePath +
+          '?redirect=' + 
+          encodeURIComponent('/' + requestedPath) +
+          (l.search ? '&' + l.search.slice(1) : '') +
+          l.hash;
+        
+        l.replace(redirectUrl);
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to application...</p>
+  </body>
+</html>
